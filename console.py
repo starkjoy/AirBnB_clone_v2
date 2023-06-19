@@ -115,37 +115,34 @@ class HBNBCommand(cmd.Cmd):
         """ Overrides the emptyline method of CMD """
         pass
 
-    def do_create(self, *args):
-        """ Create an object of any class"""
-        if not args:
-            print("** class name missing **")
-            return
-        class_name = args[0]
-        if class_name not in HBNBCommand.classes:
-            print("** class doesn't exist **")
-            return
-        attributes = {}
-        for arg in args[1:]:
-            parts = arg.split("=")
-            if len(parts) == 2:
-                key = parts[0]
-                value = parts[1].replace("_", " ")
-                if value.startswith('"') and value.endswith('"'):
-                    value = value[1:-1].replace('\\"', '"')
-                elif "." in value:
-                    try:
-                        value = float(value)
-                    except ValueError:
-                        continue
+    def do_create(self, line):
+        """ Create a new class instance with given parameters"""
+        try:
+            if not line:
+                raise SyntaxError()
+            my_list = line.split(" ")
+            kwargs = {}
+            for i in range(1, len(my_list)):
+                key, value = tuple(my_list[i].split("="))
+                if value[0] == '"':
+                    value = value.strip('"').replace("_", " ")
                 else:
                     try:
-                        value = int(value)
-                    except ValueError:
+                        value = eval(value)
+                    except (SyntaxError, NameError):
                         continue
-                attributes[key] = value
-        new_instance = HBNBCommand.classes[class_name](**attributes)
-        new_instance.save()
-        print(new_instance.id)
+                kwargs[key] = value
+                if kwargs == {}:
+                    obj = eval(my_list[0])()
+                else:
+                    obj = eval(my_list[0])(**kwargs)
+                    storage.new(obj)
+                print(obj.id)
+                obj.save()
+        except SyntaxError:
+            print("** class name missing **")
+        except NameError:
+            print("** class doesn't exist **")
 
     def help_create(self):
         """ Help information for the create method """
