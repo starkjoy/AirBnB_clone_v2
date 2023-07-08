@@ -5,7 +5,7 @@ from fabric.api import env
 from fabric.api import put
 from fabric.api import run
 
-env.hosts = ["104.196.168..90", "35.196.46.172"]
+env.hosts = ["54.82.115.80", "52.3.242.210"]
 
 def do_deploy(archive_path):
     """ Distributes an archive to a web server
