@@ -17,7 +17,7 @@ def do_pack():
             dt.hour,
             dt.minute,
             dt.second)
-    if not run("test -d versions", warn=True).failed:
+    if run("test -d versions", warn=True).failed:
         run("mkdir -p versions")
     if run("tar -cvzf {} web_static".format(file), warn=True).failed:
         return None
