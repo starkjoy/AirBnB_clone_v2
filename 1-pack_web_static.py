@@ -15,7 +15,7 @@ def do_pack():
             dt.day,
             dt.hour,
             dt.minute,
-            dt.second,)
+            dt.second)
     if os.path.isdir("versions") is False:
         if local("mkdir -p versions").failed is True:
             return None
