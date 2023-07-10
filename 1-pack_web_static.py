@@ -9,7 +9,7 @@ from fabric.api import local
 def do_pack():
     """ Creates a tar gzipped archive of the directory web_static """
     dt = datetime.utcnow()
-    file = "versions/web_static_{}{}{}{}{}{}.tgz".format(
+    file = "versions/web_static_{:04d}{:02d}{:02d}{:02d}{:02d}{:02d}.tgz".format(
             dt.year,
             dt.month,
             dt.day,
