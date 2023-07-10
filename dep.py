@@ -4,7 +4,7 @@
 from fabric import Connection, Config, task
 import os
 
-key = "./id_rsa"
+key = "./key.rsa"
 
 server_ips = ["52.207.78.146", "35.175.64.54"]
 
