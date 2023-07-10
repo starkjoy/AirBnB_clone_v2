@@ -7,7 +7,6 @@ import os.path
 from datetime import datetime
 
 
-@task
 def do_pack(c):
     """ Creates a tar gzipped archive of the directory web_static """
     dt = datetime.utcnow()
