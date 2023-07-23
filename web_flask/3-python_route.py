@@ -45,14 +45,15 @@ def print_text(text):
 
 
 @app.route('/python/<text>', strict_slashes=False)
-def display_text(text='is cool'):
+def display_text(text="is cool"):
     """
     Displays 'Python' followed by the value of the text variable
 
     Returns:
         str: Displays "Python" then the value of text and replaces '_' with ' '
     """
-    return "Python {}".format(text.replace('_', ' '))
+    text = text.replace("_", " ")
+    return "Python {}".format(text)
 
 
 if __name__ == '__main__':
