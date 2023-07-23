@@ -10,6 +10,7 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
+
 @app.route('/', strict_slashes=False)
 def hello_hbnb():
     """
@@ -20,15 +21,17 @@ def hello_hbnb():
     """
     return "Hello HBNB!"
 
+
 @app.route('/hbnb', strict_slashes=False)
 def hello1_hbnb():
     """
     Displays the message "HBNB" when the URL is accessed.
-    
+
     Returns:
         str: the sites name
     """
     return "HBNB"
+
 
 @app.route('/c/<text>', strict_slashes=False)
 def print_text(text):
@@ -40,16 +43,17 @@ def print_text(text):
     """
     return "C {}".format(text.replace('_', ' '))
 
+
 @app.route('/python/<text>', strict_slashes=False)
 def display_text(text='is cool'):
     """
     Displays 'Python' followed by the value of the text variable
 
     Returns:
-        str: Displays "Python" followed by the value of text and replaces '_' with
-             ' '
+        str: Displays "Python" then the value of text and replaces '_' with ' '
     """
     return "Python {}".format(text.replace('_', ' '))
+
 
 @app.route('/number/<int:n>', strict_slashes=False)
 def print_number(n):
@@ -64,6 +68,7 @@ def print_number(n):
     """
     return "{} is a number".format(n)
 
+
 @app.route('/number_template/<int:n>', strict_slashes=False)
 def number_template(n):
     """
@@ -77,6 +82,7 @@ def number_template(n):
     """
     return render_template('number_template.html', n=n)
 
+
 @app.route('/number_odd_or_even/<int:n>', strict_slashes=False)
 def odd_even(n):
     """
@@ -89,6 +95,7 @@ def odd_even(n):
         str: The rendered HTML page with the number
     """
     return render_template('6-number_odd_or_even.html', n=n)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
