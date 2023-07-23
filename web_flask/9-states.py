@@ -12,7 +12,7 @@ from models import storage
 from models.state import State
 from models.city import City
 
-app = Flak(__name__)
+app = Flask(__name__)
 
 @app.teardown_appcontext
 def close_storage(exception):
